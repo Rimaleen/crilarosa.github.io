@@ -1,0 +1,242 @@
+/* ===== Sezione Graphic Works (integrata nel layout esistente) ===== */
+#graphic-works {
+    padding: 40px 30px;
+    max-width: 950px;       /* mantiene la larghezza come le altre sezioni */
+    margin-left: 360px;     /* lascia spazio per la sidebar */
+    margin-right: auto;     /* centra rispetto al resto della pagina */
+    padding-top: 50px;      /* distanza dall’alto */
+    padding-bottom: 50px;   /* distanza dal footer / altre sezioni */
+}
+#graphic-works .section-title {
+    font-size: 40px;
+    margin-bottom: 25px;
+    font-family: 'Sour Gummy';
+    text-decoration: underline;
+    color: #C77DFF;  /* viola neon */
+    text-shadow: 0 0 8px rgba(199, 125, 255, 0.5);
+}
+
+/* Griglia gallery: centro più uniforme */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    justify-content: center; /* centra le colonne se non riempiono tutto lo spazio */
+     padding: 0;
+    margin: 0;
+}
+
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #1a0f2d;  /* sfondo scuro coerente */
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 250px; /* dimensione massima della miniatura */
+}
+
+.gallery-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+    display: block;
+    margin: 0 auto;     /* centra l’immagine nel box */
+}
+
+/* Effetto hover neon soft */
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px rgba(180, 90, 255, 0.4);
+}
+
+/* ===== Caption ===== */
+.caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.55);
+    font-size: 16px;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+}
+
+.lightbox img {
+    max-width: 85%;
+    max-height: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(150, 80, 255, 0.5);
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    font-size: 45px;
+    font-weight: bold;
+    color: #e7d2ff;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.lightbox .close:hover {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(200, 120, 255, 0.7);
+}
+
+#pdf-lightbox {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 40px;   /* aggiunge margine interno per dare più spazio all'iframe */
+}
+
+
+#pdf-lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+#pdf-lightbox iframe {
+    width: 95%;      /* larghezza massima aumentata */
+    height: 90vh;    /* altezza massima aumentata */
+    max-width: none; /* rimuove il limite precedente se c’era */
+    max-height: none;
+    box-shadow: 0 0 25px rgba(150, 80, 255, 0.5);
+    border-radius: 12px; /* opzionale, più estetico */
+}
+
+
+#scene-transition {
+    margin-right: auto;
+}
+
+#scene-transition .inner-content {
+    max-width: 950px;
+    margin-left: 120px;
+    margin-right: auto;
+}
+
+/* Titolo */
+.transition-title {
+    font-size: 25px;
+    color: #C77DFF;  /* viola neon */
+    text-shadow: 0 0 8px rgba(199, 125, 255, 0.5);
+    margin: 3rem 0 2rem 0;
+    text-align: left;
+    font-family: 'Sour Gummy';
+}
+
+/* === CARD === */
+.transition-card {
+    position: relative;
+    background: #1F1A38;
+    border: 2px solid #5A189A;
+    border-radius: 12px;
+    padding: 0;     /* serve per overlay aderente */
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.15);
+    transition: 0.3s;
+}
+
+.transition-card:hover {
+    border-color: #C77DFF;
+    box-shadow: 0 0 15px rgba(199, 125, 255, 0.4);
+}
+
+/* Wrapper che crea margini tra video e card */
+.video-wrapper {
+    padding: 12px;      /* qui aggiungi il margine interno! */
+}
+
+/* VIDEO */
+.transition-video {
+    display: block;
+    width: 100%;
+    border-radius: 8px; /* per estetica */
+}
+
+/* CAPTION overlay migliorato */
+.transition-caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    /* ↓ margine interno più ampio per staccarlo dal bordo ↓ */
+    padding: 20px 20px 28px 20px;
+
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Sour Gummy';
+
+    /* Colore testo adattato alla palette */
+    color: #E9D8FD;  /* lilla molto chiaro → leggibile sul nero */
+
+    /* sfumatura più morbida */
+    background: linear-gradient(
+        to top,
+        rgba(31, 26, 56, 0.85),  /* colore card più scuro */
+        rgba(31, 26, 56, 0)
+    );
+
+    /* glow viola per armonizzarlo */
+    text-shadow: 0 0 10px rgba(199, 125, 255, 0.8);
+}
+
+
+
+/* Tablet */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        justify-items: center; /* centra le miniature */
+    }
+
+    .gallery-item img {
+        max-height: 150px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        justify-items: center; /* centra le miniature */
+    }
+
+    .gallery-item img {
+        max-height: 120px;
+    }
+}

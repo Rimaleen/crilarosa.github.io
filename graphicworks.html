@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Cristina La Rosa</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/second.css">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/dist/css/lightbox.min.css">
+        <script src="assets/jquery-3.7.1.min.js"></script>
+        <script src="assets/dist/js/lightbox.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div class="inner">
+                <a href="#" class="image avatar"><img src="b.jpg" alt=""></a>
+                <h1><strong>Hi! My art name is Rima!</strong></h1>
+            </div>
+			<ul class="actions">
+							<li><a href="files\CV.pdf" target="_blank" class="button" style="font-family: 'Caveat Brush'; font-size: 20px;">Curriculum Vitae</a></li>
+						</ul>
+            <div class="contacts">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://	www.linkedin.com/in/cristina-la-rosa-4203a31b9/" target="_blank" class="icon fa-brands fa-linkedin"><span class="label"></span></a></li>
+						<li><a href="https://www.instagram.com/rimaleenart/" target="_blank" class="icon fa-brands fa-instagram"><span class="label"></span></a></li>
+						<li><a href="mailto:cristina.larosa1994@gmail.com" class="icon fa-solid fa-envelope"><span class="label"></span></a></li>
+					</ul>
+				</div>
+			</div>
+        </header>
+
+        <section id="graphic-works">
+    <h2 class="section-title">GRAPHIC WORKS</h2>
+
+    <div class="gallery">
+
+        <!-- Singola immagine -->
+        <div class="gallery-item">
+    <!-- Thumbnail visibile -->
+    <a href="images/loc1.png" data-lightbox="posters" data-title="Posters for Bioimis">
+        <img src="loc1.png" alt="Poster 1">
+    </a>
+    <!-- Altre immagini del gruppo (invisibili ma collegate) -->
+    <a href="images/loc2.png" data-lightbox="posters" data-title="Posters for Bioimis" style="display:none;"></a>
+    <div class="caption">Posters Samples</div>
+</div>
+
+        <!-- Gruppo di immagini — Business Cards -->
+        <div class="gallery-item">
+    <!-- Thumbnail visibile -->
+    <a href="sample1.png" data-lightbox="businesscard" data-title="Business Card Version 1">
+        <img src="images/sample1.png" alt="Business Card 1">
+    </a>
+    <!-- Altre immagini del gruppo (invisibili ma collegate) -->
+    <a href="images/sample2.png" data-lightbox="businesscard" data-title="Business Card Version 2" style="display:none;"></a>
+    <div class="caption">Business Card Samples</div>
+</div>
+
+        <!-- PDF — si apre in una nuova scheda -->
+        <div class="gallery-item">
+            <a href="files/alfaromeo.pdf" class="pdf-item">
+                <img src="images/alfaromeopage1.jpg" alt="PDF Project">
+            </a>
+            <div class="caption">Alfa Romeo Book Sample (PDF)</div>
+        </div>
+
+        <!-- Gruppo di immagini — Twitch Pack -->
+        <div class="gallery-item">
+            <a href="twitch-pack1.png" data-lightbox="twitchpack" data-title="Twitch Graphics 1">
+                <img src="twitch-pack1.png" alt="Twitch Graphics 1">
+            </a>
+            <a href="twitch-pack2.jpg" data-lightbox="twitchpack" data-title="Twitch Graphics 2"></a>
+            <div class="caption">Social Graphics Pack</div>
+        </div>
+    </div>
+
+      <section id="scene-transition">
+
+    <h2 class="transition-title">Scene Transition</h2>
+
+    <div class="transition-card">
+
+        <div class="video-wrapper">
+            <video autoplay muted loop playsinline class="transition-video">
+                <source src="files/stinger.mp4" type="video/mp4">
+                <source src="files/stinger.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="transition-caption">This is a scene change for Twitch.</div>
+
+    </div>
+
+</section>
+
+
+</section>
+        <footer>
+            <ul class="copyright">
+                <li>Cristina La Rosa 2025 © All Rights Reserved</li>
+            </ul>
+        </footer>
+        	<a href="#" id="backToTop" class="back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+</a>
+        <!-- Lightbox PDF -->
+<div id="pdf-lightbox" class="lightbox" style="display:none;">
+    <span class="close">&times;</span>
+    <iframe id="pdf-frame" src="" frameborder="0" style="width:90%; height:80vh; border-radius:12px;"></iframe>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Apri PDF
+    document.querySelectorAll('.pdf-item').forEach(item => {
+        item.addEventListener('click', function(e){
+            e.preventDefault();
+            const pdfUrl = this.getAttribute('href');
+            document.getElementById('pdf-frame').src = pdfUrl;
+            document.getElementById('pdf-lightbox').style.display = 'flex';
+        });
+    });
+
+    // Chiudi PDF
+    document.querySelector('#pdf-lightbox .close').addEventListener('click', function(){
+        document.getElementById('pdf-frame').src = "";
+        document.getElementById('pdf-lightbox').style.display = 'none';
+    });
+
+    // Chiudi cliccando fuori dall'iframe
+    document.getElementById('pdf-lightbox').addEventListener('click', function(e){
+        if(e.target === this){
+            document.getElementById('pdf-frame').src = "";
+            this.style.display = 'none';
+        }
+    });
+});
+</script>
+  <script>
+const video = document.querySelector('.transition-video');
+video.playbackRate = 0.7; // velocità dimezzata
+</script>
+
+    </body>
+</html>
+
