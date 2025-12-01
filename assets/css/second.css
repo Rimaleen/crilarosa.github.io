@@ -31,23 +31,25 @@
     cursor: pointer;
     border-radius: 14px;
     overflow: hidden;
-    background: #1a0f2d;  /* sfondo scuro coerente */
+    background: #1a0f2d;
     border: 1px solid rgba(255,255,255,0.08);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 250px; /* dimensione massima della miniatura */
+    max-width: 250px;
+    aspect-ratio: 2/2; /* Cambia da 1/1 (quadrato) a 3/2 (rettangolo orizzontale) */
+    height: auto; /* L'altezza si adatta in base all'aspect ratio */
 }
 
 .gallery-item img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    transition: transform 0.25s ease;
-    display: block;
-    margin: 0 auto;     /* centra l’immagine nel box */
+    transition: transform 0.4s ease;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 /* Effetto hover neon soft */
@@ -55,67 +57,96 @@
     transform: translateY(-5px);
     box-shadow: 0 0 10px rgba(180, 90, 255, 0.4);
 }
-
+.gallery-item:hover img {
+    transform: scale(1.03); /* Leggermente più piccolo di 1.05 per non tagliare */
+}
 /* ===== Caption ===== */
 .caption {
     position: absolute;
     bottom: 0;
     width: 100%;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.55);
-    font-size: 16px;
+    background: rgba(0, 0, 0, 0.7); /* Più scuro per leggibilità */
+    font-size: 15px;
     color: #ffffff;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
+    z-index: 1;
+    backdrop-filter: blur(2px);
 }
 
-/* ===== LIGHTBOX ===== */
+/* ===== LIGHTBOX CUSTOM PER IMMAGINI (stile PDF) ===== */
+/* ===== LIGHTBOX IMMAGINI COERENTE ===== */
+.lightboxOverlay,
 .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.92);
+    background-color: rgba(0, 0, 0, 0.95) !important; /* sfondo scuro quasi nero */
+    backdrop-filter: blur(5px);
     z-index: 9999;
 }
 
-.lightbox img {
-    max-width: 85%;
-    max-height: 85%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 12px;
+.lightbox .lb-outerContainer {
+    background: #1F1A38 !important; /* stesso colore della card PDF */
+    border: 2px solid #5A189A !important; /* bordo viola scuro */
+    border-radius: 12px !important;
+    box-shadow: 0 0 30px rgba(150, 80, 255, 0.6);
+}
+
+.lightbox .lb-container {
+    padding: 15px !important; /* margine interno come PDF */
+}
+
+.lightbox .lb-image {
+    border-radius: 12px !important;
+    max-width: 90vw !important;
+    max-height: 80vh !important;
     box-shadow: 0 0 25px rgba(150, 80, 255, 0.5);
 }
 
-.lightbox .close {
-    position: absolute;
-    top: 25px;
-    right: 40px;
-    font-size: 45px;
-    font-weight: bold;
-    color: #e7d2ff;
-    cursor: pointer;
-    transition: 0.3s ease;
+.lightbox .lb-close {
+    color: #e7d2ff !important;
+    background: rgba(31, 26, 56, 0.9);
+    width: 50px;
+    height: 50px;
+    font-size: 40px !important;
+    line-height: 50px !important;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid #C77DFF;
+    box-shadow: 0 0 15px rgba(199, 125, 255, 0.8);
+    transition: all 0.3s ease;
 }
 
-.lightbox .close:hover {
-    color: #ffffff;
-    text-shadow: 0 0 12px rgba(200, 120, 255, 0.7);
+.lightbox .lb-close:hover {
+    background: rgba(199, 125, 255, 0.3);
+    transform: scale(1.1);
 }
 
+.lightbox .lb-caption {
+    font-family: 'Sour Gummy', cursive;
+    font-size: 1rem;
+    color: #E9D8FD;
+    text-shadow: 0 0 10px rgba(199, 125, 255, 0.8);
+    padding: 15px 20px;
+    background: linear-gradient(
+        to top,
+        rgba(31, 26, 56, 0.85),
+        rgba(31, 26, 56, 0)
+    );
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+}
+/* ===== LIGHTBOX PDF MIGLIORATA ===== */
 #pdf-lightbox {
     position: fixed;
     inset: 0;
-    background-color: rgba(0,0,0,0.9);
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    padding: 40px;   /* aggiunge margine interno per dare più spazio all'iframe */
+    padding: 40px;
+    backdrop-filter: blur(5px);
 }
-
 
 #pdf-lightbox .close {
     position: absolute;
@@ -123,17 +154,35 @@
     right: 30px;
     font-size: 40px;
     font-weight: bold;
-    color: #fff;
+    color: #e7d2ff;
     cursor: pointer;
+    background: rgba(31, 26, 56, 0.9);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid #C77DFF;
+    transition: all 0.3s ease;
+    z-index: 10000;
 }
 
+#pdf-lightbox .close:hover {
+    background: rgba(199, 125, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(199, 125, 255, 0.8);
+}
+
+/* Contenitore iframe migliorato */
 #pdf-lightbox iframe {
-    width: 95%;      /* larghezza massima aumentata */
-    height: 90vh;    /* altezza massima aumentata */
-    max-width: none; /* rimuove il limite precedente se c’era */
-    max-height: none;
-    box-shadow: 0 0 25px rgba(150, 80, 255, 0.5);
-    border-radius: 12px; /* opzionale, più estetico */
+    width: 90%;
+    max-width: 1200px;
+    height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(150, 80, 255, 0.6);
+    border: 2px solid #5A189A;
+    background: #1F1A38;
 }
 
 
@@ -212,31 +261,277 @@
     /* glow viola per armonizzarlo */
     text-shadow: 0 0 10px rgba(199, 125, 255, 0.8);
 }
+/* ===== RESPONSIVE PER GRAPHICWORKS.HTML ===== */
 
-
-
-/* Tablet */
-@media (max-width: 900px) {
+/* Tablet - Schermi medi */
+@media (max-width: 992px) {
+    /* Regola la gallery per 2 colonne */
     .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
-        justify-items: center; /* centra le miniature */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
     }
 
-    .gallery-item img {
-        max-height: 150px;
+    .gallery-item {
+        max-width: 220px;
+    }
+
+    /* Aggiusta la sezione principale - IMPORTANTE: anche scene-transition deve ereditare questo */
+    #graphic-works {
+        margin-left: 320px;
+        padding: 30px 20px;
+        max-width: calc(100% - 340px);
+        width: calc(100% - 340px);
+    }
+
+    /* Aggiusta il titolo della sezione */
+    #graphic-works .section-title {
+        font-size: 35px;
+    }
+
+    /* CORREZIONE: Aggiusta la sezione video - deve essere dentro #graphic-works */
+    #scene-transition {
+        margin-left: 0; /* Rimuove il margine sinistro separato */
+        margin-top: 3rem;
+        width: 100%; /* Occupa tutta la larghezza disponibile */
+        max-width: 100%;
+    }
+
+    .transition-title {
+        font-size: 22px;
+        margin: 2.5rem 0 1.5rem 0;
+    }
+
+    /* Riduci il padding del video */
+    .video-wrapper {
+        padding: 10px;
+    }
+
+    /* Lightbox PDF su tablet */
+    #pdf-lightbox {
+        padding: 20px;
+    }
+
+    #pdf-lightbox iframe {
+        width: 95%;
+        height: 80vh;
     }
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-    .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 10px;
-        justify-items: center; /* centra le miniature */
+/* Mobile - Schermi piccoli */
+@media (max-width: 756px) {
+    /* Riduci la sidebar */
+    #graphic-works {
+        margin-left: 220px;
+        width: calc(100% - 240px);
+        max-width: calc(100% - 240px);
+        padding: 25px 15px;
     }
 
+    /* Gallery a una colonna su mobile */
+    .gallery {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 15px;
+    }
+
+    .gallery-item {
+        max-width: 100%;
+        aspect-ratio: 3/2; /* Mantiene il rettangolo orizzontale */
+    }
+
+    /* Titolo più piccolo */
+    #graphic-works .section-title {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    /* CORREZIONE: Sezione video su mobile - sempre dentro #graphic-works */
+    #scene-transition {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 2.5rem;
+    }
+
+    .transition-title {
+        font-size: 20px;
+        margin: 2rem 0 1rem 0;
+        text-align: center;
+    }
+
+    .transition-card {
+        border-width: 1px;
+    }
+
+    .video-wrapper {
+        padding: 8px;
+    }
+
+    /* Caption più piccola */
+    .transition-caption {
+        padding: 15px 15px 20px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Lightbox per mobile */
+    .lightbox .lb-image {
+        max-width: 95vw !important;
+        max-height: 70vh !important;
+    }
+
+    .lightbox .lb-close {
+        width: 40px;
+        height: 40px;
+        font-size: 32px !important;
+        line-height: 40px !important;
+        top: 10px;
+        right: 10px;
+    }
+
+    .lightbox .lb-caption {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    /* PDF lightbox per mobile */
+    #pdf-lightbox {
+        padding: 15px;
+    }
+
+    #pdf-lightbox .close {
+        width: 40px;
+        height: 40px;
+        font-size: 32px;
+        top: 10px;
+        right: 10px;
+    }
+
+    #pdf-lightbox iframe {
+        width: 98%;
+        height: 75vh;
+    }
+}
+
+/* Mobile molto piccolo */
+@media (max-width: 500px) {
+    /* Rimuove il margine della sidebar quando diventa header */
+    #graphic-works {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+    }
+
+    /* Gallery item su schermi molto piccoli */
+    .gallery-item {
+        aspect-ratio: 4/3; /* Leggermente più quadrato per schermi piccoli */
+    }
+
+    /* Titolo più compatto */
+    #graphic-works .section-title {
+        font-size: 26px;
+    }
+
+    /* CORREZIONE: Sezione video su schermi molto piccoli */
+    #scene-transition {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .transition-title {
+        font-size: 18px;
+        margin: 1.5rem 0 1rem 0;
+        text-align: center;
+    }
+
+    .video-wrapper {
+        padding: 5px;
+    }
+
+    .transition-video {
+        border-radius: 6px;
+    }
+
+    .transition-caption {
+        padding: 12px 12px 18px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Lightbox per schermi molto piccoli */
+    .lightbox .lb-image {
+        max-width: 98vw !important;
+        max-height: 60vh !important;
+    }
+
+    .lightbox .lb-close {
+        width: 35px;
+        height: 35px;
+        font-size: 28px !important;
+        line-height: 35px !important;
+    }
+
+    .lightbox .lb-caption {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    /* PDF lightbox per schermi molto piccoli */
+    #pdf-lightbox {
+        padding: 10px;
+    }
+
+    #pdf-lightbox .close {
+        width: 35px;
+        height: 35px;
+        font-size: 28px;
+    }
+
+    #pdf-lightbox iframe {
+        width: 100%;
+        height: 70vh;
+        border-radius: 8px;
+    }
+}
+
+/* Orientamento orizzontale su mobile */
+@media (max-width: 756px) and (orientation: landscape) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .gallery-item {
+        max-width: 200px;
+        aspect-ratio: 3/2;
+    }
+
+    #graphic-works {
+        padding-top: 15px;
+    }
+
+    /* Video in landscape */
+    .video-wrapper {
+        padding: 8px;
+    }
+
+    .transition-video {
+        max-height: 50vh;
+    }
+
+    /* Lightbox in landscape */
+    #pdf-lightbox iframe {
+        height: 85vh;
+    }
+}
+
+/* Schermi ad alta densità (retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .gallery-item img {
-        max-height: 120px;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+
+    .transition-video {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
     }
 }
