@@ -16,9 +16,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/dist/css/lightbox.min.css">
         <script src="assets/jquery-3.7.1.min.js"></script>
-        <script src="assets/dist/js/lightbox.min.js"></script>
 
     </head>
 
@@ -44,14 +42,19 @@
         </header>
 
 <div class="main">
-    <section id="drawings">
-        <h2>Drawings</h2>
+    <!-- SEZIONI / TAB -->
+    <div class="gallery-tabs">
+        <button class="tab active" data-section="drawings">Drawings</button>
+        <button class="tab" data-section="dnd">DnD Character Designs</button>
+        <button class="tab" data-section="concept">Concept Arts</button>
+    </div>
 
+    <section id="drawings" class="gallery-section active">
+        <h2 id="sectionTitle">Drawings</h2>
         <div class="focus-gallery">
-
             <!-- MAIN IMAGE -->
             <div class="main-image">
-                <img id="mainDisplay" src="https://picsum.photos/500" alt="Drawing placeholder" class="main-img" data-index="0"/>
+                <img id="mainDisplay" src="images/amon1.jpg" class="main-img" alt="Drawing placeholder">
             </div>
 
             <!-- SIDE INFO -->
@@ -62,24 +65,75 @@
 
             <!-- THUMBNAILS -->
             <div class="thumb-row">
-                <img src="https://picsum.photos/500" onclick="changeImage(this)" class="thumbnail" data-index="0">
-                <img src="https://picsum.photos/600" onclick="changeImage(this)" class="thumbnail" data-index="1">
-                <img src="https://picsum.photos/100" onclick="changeImage(this)" class="thumbnail" data-index="2">
-                <img src="https://picsum.photos/900" onclick="changeImage(this)" class="thumbnail" data-index="3">
-                <img src="https://picsum.photos/1900" onclick="changeImage(this)" class="thumbnail" data-index="4">
-                <img src="https://picsum.photos/200" onclick="changeImage(this)" class="thumbnail" data-index="5">
-                <img src="https://picsum.photos/300" onclick="changeImage(this)" class="thumbnail" data-index="6">
+                <img src="images/amon1.jpg" class="thumbnail" data-full="images/amon.jpg" alt="Main Drawing" data-desc="Descrizione Angel">
+                <img src="images/angel1.jpg" class="thumbnail" data-full="images/angel.jpg" alt="Second Drawing" data-desc="Descrizione Angel">
+                <img src="images/heiden1.jpg" class="thumbnail" data-full="images/heiden.png" alt="Third Drawing" data-desc="Descrizione Angel">
+                <img src="images/solarx1.jpg" class="thumbnail" data-full="images/solarx.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/hila1.jpg" class="thumbnail" data-full="images/hila.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/odinne1.jpg" class="thumbnail" data-full="images/odinne.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/shifune1.jpg" class="thumbnail" data-full="images/shifune.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/barb1.jpg" class="thumbnail" data-full="images/barb.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/god1.jpg" class="thumbnail" data-full="images/god.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/jacob1.jpg" class="thumbnail" data-full="images/jacob.jpg" alt="Fourth Drawing" data-desc="Descrizione Angel">
+                <img src="images/zane1.jpg" class="thumbnail" data-full="images/zane.png" alt="Fourth Drawing" data-desc="Descrizione Angel">
             </div>
-        </div>
 
-<!-- Lightbox -->
+        </div>
+    </section>
+
+    <!-- SEZIONE DnD CHARACTER DESIGNS -->
+<section id="dnd" class="gallery-section">
+    <h2>DnD Character Designs</h2>
+    <div class="focus-gallery">
+        <div class="main-image">
+            <img id="mainDisplay-dnd" src="images/dahala1.jpg" class="main-img" alt="dnd">
+        </div>
+        <div class="side-info">
+            <h3>Character Title</h3>
+            <p>Breve descrizione del personaggio.</p>
+        </div>
+        <div class="thumb-row">
+            <img src="images/dahala1.jpg" class="thumbnail" data-full="images/dahala.jpg" alt="Character 1" data-desc="Descrizione Angel">
+            <img src="images/narahi1.jpg" class="thumbnail" data-full="images/narahi.jpg" alt="Character 2" data-desc="Descrizione Angel">
+            <img src="images/german1.jpg" class="thumbnail" data-full="images/german.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/lin1.jpg" class="thumbnail" data-full="images/lin.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/axium1.jpg" class="thumbnail" data-full="images/axium.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/elesis1.jpg" class="thumbnail" data-full="images/elesis.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/axely1.jpg" class="thumbnail" data-full="images/axely.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/xiune1.jpg" class="thumbnail" data-full="images/xiune.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/kael1.jpg" class="thumbnail" data-full="images/kael.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/kuro1.jpg" class="thumbnail" data-full="images/kuro.jpg" alt="Character 3" data-desc="Descrizione Angel">
+            <img src="images/nyxiria1.jpg" class="thumbnail" data-full="images/nyxiria.jpg" alt="Character 3" data-desc="Descrizione Angel">
+        </div>
+    </div>
+</section>
+
+    <!-- SEZIONE CONCEPT ARTS -->
+<section id="concept" class="gallery-section">
+    <h2>Concept Arts</h2>
+    <div class="focus-gallery">
+        <div class="main-image">
+            <img id="mainDisplay-concept" src="images/blood1.jpg" class="main-img" alt="Concept Art">
+        </div>
+        <div class="side-info">
+            <h3>Concept Title</h3>
+            <p>Breve descrizione del concept.</p>
+        </div>
+        <div class="thumb-row">
+            <img src="images/blood1.jpg" class="thumbnail" data-full="images/blood.jpg" alt="Concept 1" data-desc="Descrizione Angel">
+            <img src="images/rolant1.jpg" class="thumbnail" data-full="images/rolant.jpg" alt="Concept 2" data-desc="Descrizione Angel">
+            <img src="images/sum1.jpg" class="thumbnail" data-full="images/sum.jpg" alt="Concept 3" data-desc="Descrizione Angel">
+        </div>
+    </div>
+</section>
+
+  <!-- LIGHTBOX -->
 <div id="lightbox" class="photo-lightbox">
     <span class="close-lightbox">&times;</span>
     <span class="prev">&#10094;</span>
     <span class="next">&#10095;</span>
     <img id="lightbox-img" src="" alt="Preview">
 </div>
-    </section>
 </div>
 
         <footer>
@@ -90,6 +144,7 @@
         	<a href="#" id="backToTop" class="back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
 </a>
+
 <script src="assets/js/gallery.js"></script>
     </body>
 </html>

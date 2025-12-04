@@ -51,6 +51,15 @@ transition: transform 0.2s;
         0 0 15px var(--neon-2);
 }
 
+.thumb-row img.active {
+    opacity: 0.35;
+    cursor: default !important;
+    pointer-events: none; /* disabilita click */
+    transform: none !important;
+    box-shadow: none !important;
+    border: 2px solid var(--neon-1);
+}
+
 /* Smooth fade change */
 .fade-out {
 opacity: 0;
@@ -133,4 +142,51 @@ grid-template-rows: auto auto auto;
 
 .prev { left: 20px; }
 .next { right: 20px; }
+/* CONTENITORE TABS */
+.gallery-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
 
+/* STILE DEI PULSANTI TAB */
+.gallery-tabs .tab {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 2px solid var(--neon-2);
+    background-color: #1F1A38;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 0 5px var(--neon-1), 0 0 10px var(--neon-2);
+}
+
+/* HOVER */
+.gallery-tabs .tab:hover {
+    background-color: var(--neon-1);
+    color: #1F1A38;
+    box-shadow: 0 0 10px var(--neon-1), 0 0 15px var(--neon-2);
+}
+
+/* TAB ATTIVA */
+.gallery-tabs .tab.active {
+    background-color: var(--neon-2);
+    color: #fff;
+    border-color: var(--neon-1);
+    box-shadow: 0 0 15px var(--neon-1), 0 0 20px var(--neon-2);
+    cursor: default;
+}
+
+/* Nasconde tutte le sezioni di default */
+.gallery-section {
+    display: none;
+}
+
+/* Mostra solo la sezione attiva */
+.gallery-section.active {
+    display: block;
+}
