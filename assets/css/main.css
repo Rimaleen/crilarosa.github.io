@@ -94,9 +94,14 @@ header .image.avatar img {
 
 /* Titolo */
 header h1 {
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-align: center;
     color: #EDEAF7;
+}
+
+header h1 span {
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 /* ===== CONTATTI ===== */
@@ -138,7 +143,9 @@ header h1 {
     width: calc(100% - 300px);
     padding: 2.5rem 2.5rem 2.5rem 6rem; /* ↑ padding-left aumentato */
 }
-
+#one p {
+  margin-bottom: 1rem;
+}
 /* Sezioni */
 section {
     max-width: 900px;
@@ -147,7 +154,7 @@ section {
 
 section h2 {
     font-size: 2rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 2rem;
     text-decoration: underline;
 
     color: #C77DFF;  /* viola neon */
@@ -173,6 +180,7 @@ section::after {
 section:last-of-type::after {
     content: none;
 }
+
 
 /* ===== Pulsante CV ===== */
 ul.actions {

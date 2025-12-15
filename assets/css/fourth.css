@@ -7,6 +7,15 @@ body.noscroll {
     overflow: hidden;
 }
 
+.drawTitle {
+    font-size: 25px;
+    color: #C77DFF;  /* viola neon */
+    text-shadow: 0 0 8px rgba(199, 125, 255, 0.5);
+    margin: 3rem 0 2rem 0;
+    text-align: left;
+    font-family: 'Sour Gummy';
+}
+
 .focus-gallery {
 height: auto;
 display: grid;

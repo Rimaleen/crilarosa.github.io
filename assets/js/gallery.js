@@ -12,7 +12,8 @@ const prevBtn = document.querySelector(".prev");
 const nextBtn = document.querySelector(".next");
 
 let currentSection = null;
-let currentIndex = 0;
+let galleryIndex = 0;   // indice della main image
+let lightboxIndex = 0;  // indice SOLO per la lightbox
 let galleryImages = [];
 let galleryFullImages = [];
 let galleryData = [];
@@ -58,7 +59,7 @@ function initSection(section) {
     // Main display click apre lightbox
     if (mainDisplay) {
         mainDisplay.style.cursor = "pointer";
-        mainDisplay.addEventListener("click", () => openLightbox(section, currentIndex));
+        mainDisplay.addEventListener("click", () => openLightbox(section));
     }
 }
 
@@ -93,49 +94,55 @@ function updateActiveThumbnail(section) {
 function changeImage(section, index) {
     const mainDisplay = section.querySelector(".main-image img");
     if (!mainDisplay) return;
-    currentIndex = index;
-    mainDisplay.src = galleryImages[currentIndex];
-    updateSideInfo(section, currentIndex);
+
+    galleryIndex = index;          // 👈 stato gallery
+    currentIndex = index;          // (serve ancora per thumbnails)
+    mainDisplay.src = galleryImages[galleryIndex];
+
+    updateSideInfo(section, galleryIndex);
     updateActiveThumbnail(section);
 }
+
 
 //---------------------------------------------------
 // LIGHTBOX
 //---------------------------------------------------
-function openLightbox(section, index) {
+function openLightbox(section) {
     currentSection = section;
-    currentIndex = index;
-    if (!lightbox) return;
+
+    lightboxIndex = galleryIndex;   // 👈 copia lo stato
+    lightboxImg.src = galleryFullImages[lightboxIndex];
+
     lightbox.style.display = "flex";
     lightbox.classList.add("show");
-    lightboxImg.src = galleryFullImages[currentIndex];
     document.body.classList.add("noscroll");
     isLightboxOpen = true;
 }
 
+
 function closeLightbox() {
-    if (!lightbox) return;
     lightbox.style.display = "none";
     lightbox.classList.remove("show");
     document.body.classList.remove("noscroll");
     isLightboxOpen = false;
+
+    lightboxIndex = galleryIndex; // 🔄 reset silenzioso
 }
+
 
 //---------------------------------------------------
 // NAVIGAZIONE FRECCE LIGHTBOX (solo lightbox!)
 //---------------------------------------------------
 function prevImage() {
     if (!isLightboxOpen) return;
-    currentIndex = (currentIndex - 1 + galleryFullImages.length) % galleryFullImages.length;
-    lightboxImg.src = galleryFullImages[currentIndex];
-    // Non aggiornare thumbnails/main display
+    lightboxIndex = (lightboxIndex - 1 + galleryFullImages.length) % galleryFullImages.length;
+    lightboxImg.src = galleryFullImages[lightboxIndex];
 }
 
 function nextImage() {
     if (!isLightboxOpen) return;
-    currentIndex = (currentIndex + 1) % galleryFullImages.length;
-    lightboxImg.src = galleryFullImages[currentIndex];
-    // Non aggiornare thumbnails/main display
+    lightboxIndex = (lightboxIndex + 1) % galleryFullImages.length;
+    lightboxImg.src = galleryFullImages[lightboxIndex];
 }
 
 //---------------------------------------------------
