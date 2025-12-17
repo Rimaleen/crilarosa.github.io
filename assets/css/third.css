@@ -38,12 +38,7 @@
     box-shadow: 0 0 30px rgba(150, 80, 255, 0.6);
 }
 
-/* Placeholder Samples */
-.sample1 { background-image: url('https://picsum.photos/400/600'); }
-.sample2 { background-image: url('https://picsum.photos/500/300'); }
-.sample3 { background-image: url('https://picsum.photos/600/600'); }
-.sample4 { background-image: url('https://picsum.photos/350/500'); }
-.sample5 { background-image: url('https://picsum.photos/500/700'); }
+
 
 /* ================================
    LIGHTBOX FOTO (dedicato a questa pagina)
